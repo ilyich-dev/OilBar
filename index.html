@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OIL BAR</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Большая фотография-шапка -->
+  <header class="site-header">
+    <img src="images/TheMainCar.jpg" alt="OIL BAR" class="header-image">
+  </header>
+
+  <!-- Контакты -->
+  <section class="contact-info">
+    <h1>OIL BAR — магазин моторных масел и антифризов в городе Костанай</h1>
+    <p class="phone">☎️ Телефон продавца: +7 (705) 462-51-58</p>
+    <p class="warning">⚠️ Внимание! Цены на товары и наличие уточнять у продавца при заказе</p>
+  </section>
+
+  <!-- Каталог товаров -->
+  <main class="catalog">
+
+    <!-- Кнопка входа в админку -->
+    <footer>
+      <button id="adminLoginBtn">Вход для администратора</button>
+    </footer>
+
+    <!-- Панель администратора -->
+    <div id="adminPanel" style="display:none; background:#ffffff; color:#151730; padding:20px; margin-top:20px;">
+      <h2>Админ-панель OIL BAR</h2>
+      <p>Вы вошли как администратор.</p>
+      <button id="saveChanges">Сохранить изменения</button>
+      <button id="logoutBtn">Выйти</button>
+      <hr>
+      <div id="visitCounter" style="margin-bottom:10px; font-weight:bold;"></div>
+      <div id="adminProducts"></div>
+    </div>
+
+    <!-- Каталог масел -->
+    <button class="catalog-btn" id="toggleOils">Каталог моторных масел</button>
+    <div class="catalog-panel" id="oilPanel">
+      <div class="product-grid" id="oilList"></div>
+    </div>
+
+    <!-- Каталог антифризов -->
+    <button class="catalog-btn" id="toggleAntifreeze">Каталог антифризов</button>
+    <div class="catalog-panel" id="antifreezePanel">
+      <div class="product-grid" id="antifreezeList"></div>
+    </div>
+
+  </main>
+
+  <!-- Подключение основного JS-файла как модуля -->
+  <script type="module" src="script.js"></script>
+
+  <script>
+    // --- Счётчик посещений ---
+    let visits = localStorage.getItem("visits") || 0;
+    visits++;
+    localStorage.setItem("visits", visits);
+
+    // Если пользователь открыл админ-панель — показать количество посещений
+    document.addEventListener("DOMContentLoaded", () => {
+      const visitDisplay = document.getElementById("visitCounter");
+      if (visitDisplay) {
+        visitDisplay.textContent = "👁️ Количество посещений сайта: " + visits;
+      }
+    });
+  </script>
+
+</body>
+</html>
